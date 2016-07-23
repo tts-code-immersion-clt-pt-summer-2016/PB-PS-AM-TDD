@@ -1,13 +1,13 @@
 #INVENTORY OF CANDY 
 
 # Define all Methods
-# MEthod for displaying inventory
+# Method for displaying inventory
 def inventory(items)
   puts "This is the candy in your inventory:" 	
   items.each{|key,value| puts "#{key}: #{value}"} 
 end
 
-# method for updating item to existing inventory
+# Method for updating item to existing inventory
 def update_item(items)
 	puts "Which item would you like to update: #{items.keys}?"
 	item = gets.chomp
@@ -22,7 +22,7 @@ def update_item(items)
 	items[item] = value
 end  
 
-# method for updating existing inventory
+# Method for updating existing inventory
 def add_item(items)
 	puts "What would you like to add to inventory"
 	item = gets.chomp
@@ -37,7 +37,7 @@ def add_item(items)
 	items[item] = value
 end   
 
-# method for deleting existing inventory  
+# Method for deleting existing inventory  
 def delete_item(items)
 	puts "What would you like to delete from inventory"
 	item = gets.chomp
