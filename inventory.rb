@@ -1,6 +1,7 @@
 #INVENTORY OF CANDY 
 
-# Define all Methods
+# Define all Methods, prior to starting loop
+
 # Method for displaying inventory
 def inventory(items)
   puts "This is the candy in your inventory:" 	
@@ -32,7 +33,7 @@ def add_item(items)
 		item = gets.chomp
 	end	
 	puts "What is the new inventory value for #{item}"
-	# Enhance by using REGEXP to check for valid integer values
+	#  Enhance by using REGEXP to check for valid integer values before converting user input to integer
 	value = gets.chomp.to_i
 	items[item] = value
 end   
@@ -46,7 +47,7 @@ def delete_item(items)
 		inventory(items)
 		item = gets.chomp
 	end	
-	# Enhance by checking for non 0 inventory values and warning user there is still inventory
+	# Enhance by checking for non 0 inventory values and warning user there is still inventory before deleting
 	items.delete(item)
  end   
 
@@ -60,8 +61,8 @@ def options()
 	4: Enter \"4\" to Delete an Item from inventory
 	"
 end
+
 # Creating a hash of inital inventory of candy
-# Hashes have some advantages over arrays, in not needing to define our own methods
 items = {'Kit Kat' => 3, 'Reeses' => 10, 'M&Ms' => 4, 'Hershey' => 13}
 
 exit = false
