@@ -18,24 +18,36 @@ def update_item(items)
 		item = gets.chomp
 	end
 	puts "What is the new inventory value for #{item}?"
-	value = gets.chomp.to_i
+	value = gets.chomp
+	temp = /\d+/.match(value)[0]
+	until value.length == temp.length
+		puts "Please enter a valid integer amount for the inventory of #{item}:"
+		value = gets.chomp
+		temp = /\d+/.match(value)[0]
+	end
 	# Enhance by using REGEXP to check for valid integer values
-	items[item] = value
+	items[item] = value.to_i
 end  
 
 # Method for updating existing inventory
 def add_item(items)
-	puts "What would you like to add to inventory"
+	puts "What would you like to add to inventory?"
 	item = gets.chomp
 	while items.has_key?(item)
 		puts "Please Enter an Item that doesn't already exist, otherwise use the Update Inventory option!"
 		inventory(items)
 		item = gets.chomp
 	end	
-	puts "What is the new inventory value for #{item}"
+	puts "What is the new inventory value for #{item}?"
 	#  Enhance by using REGEXP to check for valid integer values before converting user input to integer
-	value = gets.chomp.to_i
-	items[item] = value
+	value = gets.chomp
+	temp = /\d+/.match(value)[0]
+	until value.length == temp.length
+		puts "Please enter a valid integer amount for the inventory of #{item}:"
+		value = gets.chomp
+		temp = /\d+/.match(value)[0]
+	end
+	items[item] = value.to_i
 end   
 
 # Method for deleting existing inventory  
@@ -48,7 +60,21 @@ def delete_item(items)
 		item = gets.chomp
 	end	
 	# Enhance by checking for non 0 inventory values and warning user there is still inventory before deleting
-	items.delete(item)
+	if items[item] > 0 
+		puts "WARNING! There is still inventory for #{item}. Do you still want to delete inventory, Y/N?"
+		response = gets.chomp.upcase
+		until ["Y","N"].include?(response)
+			puts "Do you still want to delete inventory, Y/N?"
+			response = gets.chomp.upcase
+			if response == "Y"
+				items.delete(item)
+			else
+				puts "OK, Not deleting the inventory."	
+			end
+		end
+	else
+		items.delete(item)
+	end
  end   
 
 # Method for Printing Options
